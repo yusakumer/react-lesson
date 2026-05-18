@@ -30443,6 +30443,14 @@ __webpack_require__.r(__webpack_exports__);
 
 // Clear the existing HTML content
 document.body.innerHTML = '<div id="app"></div>';
+const todoItem = "掃除洗濯";
+const handleClick = () => {
+    alert("hi");
+};
+const element = (react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null,
+    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "react\u306E\u5B66\u7FD2"),
+    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, todoItem),
+    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { onClick: handleClick }, "button")));
 // Render your React component instead
 const root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(document.getElementById('app'));
 root.render(react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Hello, world"));
