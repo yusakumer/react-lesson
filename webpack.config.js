@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin  = require("mini-css-extract-plugin");
+const { test } = require('node:test');
+const { use } = require('react');
 
 module.exports = {
     // 開発モード（ビルドが速く、デバッグしやすい）
@@ -33,7 +35,7 @@ module.exports = {
             // CSS (.css) の処理
             {
                 test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+                use: [MiniCssExtractPlugin.loader, 'css-loader','postcss-loader'],
             },
         ],
     },
