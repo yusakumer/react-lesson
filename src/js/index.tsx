@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { TodoList } from "./components/TodoList";
+import { TodoList } from "./components/todo/TodoList";
 import "../css/main.css";
 import { App } from "./App";
 
