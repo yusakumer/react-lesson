@@ -4,24 +4,16 @@ import { Todo } from "./type";
 import { Button } from "../parts/Button";
 
 type Props = {
-  setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>;
+  addTodo: (newTask: string, newPerson: string, newDeadline: string) => void;
 };
 
-export const NewTodoForm = ({ setTodoList }: Props) => {
+export const NewTodoForm = ({ addTodo }: Props) => {
   const [newTask, setNewTask] = React.useState<string>("");
   const [newPerson, setPerson] = React.useState<string>("");
   const [newDeadline, setDeadline] = React.useState<string>("");
 
   const addNewTodo = () => {
-    setTodoList((prev: Todo[]) => [
-      ...prev,
-      {
-        id: Date.now(),
-        task: newTask,
-        person: newPerson,
-        deadline: newDeadline,
-      },
-    ]);
+    addTodo(newTask,newPerson,newDeadline);
 
     setNewTask("");
     setPerson("");

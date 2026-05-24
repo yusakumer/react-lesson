@@ -4,10 +4,10 @@ import { Todo } from "./type";
 
 type Props = {
   todoList: Todo[];
-  setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>;
+  deleteTodo: (id:number) => void;
 };
 
-export const TodoList = ({ todoList, setTodoList }: Props) => {
+export const TodoList = ({ todoList, deleteTodo }: Props) => {
   return (
     <ul className=" bg-emerald-400 p-4 rounded-sm">
       <li className="grid grid-cols-4 font-bold">
@@ -23,7 +23,7 @@ export const TodoList = ({ todoList, setTodoList }: Props) => {
           task={todo.task}
           person={todo.person}
           deadline={todo.deadline}
-          setTodoList={setTodoList}
+          deleteTodo={deleteTodo}
         />
       ))}
     </ul>

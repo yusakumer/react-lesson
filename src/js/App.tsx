@@ -3,33 +3,13 @@ import { TodoList } from "./components/todo/TodoList";
 import { Heading } from "./components/parts/Heading";
 import { NewTodoForm } from "./components/todo/NewTodoForm";
 import { Todo } from "./components/todo/type";
+import { useTodoList } from "./components/todo/use-todoList";
 
 
 
 export const App = () => {
-  const [todoList, setTodoList] = useState<Todo[]>([]);
+  const {todoList,addTodo,deleteTodo}  = useTodoList();
 
-  // マウント時に、一度だけlocalstrageにtodo一覧のデータを取得する
-  useEffect(() => {
-    const todoListData = localStorage.getItem("todo-list");
-    if(todoListData){
-        setTodoList(JSON.parse(todoListData));
-    }
-  },[])
-
-  // Todolistが更新されるたびに,Localstorageにデータを保存する
-  useEffect(() => {
-    localStorage.setItem("todo-list",JSON.stringify(todoList))
-  })
-
-  useEffect(() => {
-    console.log("compornets");
-
-    return () => {
-        console.log("マウント");
-
-    };
-  },[todoList]);
 
   return (
     <main className="text-center mx-auto my-0">
@@ -37,12 +17,12 @@ export const App = () => {
       <div className="mt-3">
         <Heading level="h2">新規Todo作成</Heading>
         <div className="mt-3">
-          <NewTodoForm setTodoList={setTodoList} />
+          <NewTodoForm addTodo={addTodo} />
         </div>
       </div>
       <div className="mt-2">
         <Heading level="h3">TODOLIST</Heading>
-        <TodoList setTodoList={setTodoList} todoList={todoList} />
+        <TodoList deleteTodo={deleteTodo} todoList={todoList} />
       </div>
     </main>
   );

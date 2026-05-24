@@ -7,7 +7,7 @@ type TodoItemProps = {
   task: string;
   person: string;
   deadline: string;
-  setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>;
+  deleteTodo: (id:number) => void;
 };
 
 export const TodoItem: React.FC<TodoItemProps> = ({
@@ -15,12 +15,9 @@ export const TodoItem: React.FC<TodoItemProps> = ({
   task,
   person,
   deadline,
-  setTodoList
+  deleteTodo
 }) => {
 
-  const deleteTodo = () => {
-    () => setTodoList((prev) => prev.filter((todo) => todo.id !== id))
-  }
 
   return (
     <li className="grid grid-cols-4">
@@ -28,7 +25,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({
       <div>{person}</div>
       <div>{deadline}</div>
       <div>
-        <Button color="red" onClick={deleteTodo}>削除</Button>
+        <Button color="red" onClick={() => deleteTodo(id)}>削除</Button>
       </div>
     </li>
   );
