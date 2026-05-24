@@ -1,6 +1,6 @@
 import React from "react";
 import { TextField } from "../parts/TextFiled";
-import { Todo } from "./type";
+import { Todo } from "../../types/type";
 import { Button } from "../parts/Button";
 
 type Props = {

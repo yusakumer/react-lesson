@@ -9,7 +9,7 @@ export const Button = ({onClick,color,children}:PropsWithChildren<Props>) => {
     const style = color === "red" ? "bg-red-400" : "bg-cyan-100";
   return (
     <button
-      className={`border w-16 ${style}`} onClick={onClick}>
+      className={`border w-auto ${style}`} onClick={onClick}>
       {children}
     </button>
   );
