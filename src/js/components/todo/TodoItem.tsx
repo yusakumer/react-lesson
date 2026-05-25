@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Todo } from "../../types/type";
 import { Button } from "../parts/Button";
 import { useAuth } from "../../hooks/use-auth";
@@ -11,7 +11,7 @@ type Props = {
   deleteTodo: (id:number) => void;
 };
 
-export const TodoItem= ({
+export const TodoItem= memo(({
   id,
   task,
   person,
@@ -21,6 +21,8 @@ export const TodoItem= ({
 
   const{username} = useAuth();
   const style = username === person ? "text-red-600 font-bold": "";
+
+  console.log("Todoitem")
 
 
   return (
@@ -33,4 +35,4 @@ export const TodoItem= ({
       </div>
     </li>
   );
-};
+});

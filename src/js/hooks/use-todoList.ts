@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Todo } from "../types/type";
 
 export const useTodoList = () => {
   const [todoList, setTodoList] = useState<Todo[]>([]);
+  const [filterWord, setFilterWord] = useState<string>("");
 
   // マウント時に、一度だけlocalstrageにtodo一覧のデータを取得する
   useEffect(() => {
@@ -15,10 +16,10 @@ export const useTodoList = () => {
   // Todolistが更新されるたびに,Localstorageにデータを保存する
   useEffect(() => {
     localStorage.setItem("todo-list", JSON.stringify(todoList));
-  },[todoList]);
+  }, [todoList]);
 
-  const addTodo = (newTask:string,newPerson:string,newDeadline:string) => {
-        setTodoList((prev: Todo[]) => [
+  const addTodo = (newTask: string, newPerson: string, newDeadline: string) => {
+    setTodoList((prev: Todo[]) => [
       ...prev,
       {
         id: Date.now(),
@@ -27,11 +28,13 @@ export const useTodoList = () => {
         deadline: newDeadline,
       },
     ]);
-  }
+  };
 
-    const deleteTodo = (id:number) => {
-    setTodoList((prev) => prev.filter((todo) => todo.id !== id))
-  }
+  const deleteTodo = useCallback((id: number) =>
+    setTodoList((prev) => prev.filter((todo) => todo.id !== id)), []
+  );
 
-  return {todoList,addTodo,deleteTodo}
+  const filteredTodoList = useMemo(() => todoList.filter((todo) => todo.task.includes(filterWord) || todo.person.includes(filterWord),),[todoList,filterWord])
+
+  return { todoList:filteredTodoList, addTodo, deleteTodo,filterWord, setFilterWord };
 };

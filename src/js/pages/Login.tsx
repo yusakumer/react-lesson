@@ -6,6 +6,7 @@ import { useAuth } from "../hooks/use-auth";
 
 export const Login = () => {
   const { login, username, setUserName } = useAuth();
+  console.log("login")
   return (
     <main className="text-center mx-auto my-0">
       <Heading level="h1">loggin</Heading>

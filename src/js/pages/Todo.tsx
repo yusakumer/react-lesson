@@ -1,14 +1,16 @@
 import React from "react";
 import { Button } from "../components/parts/Button";
 import { Heading } from "../components/parts/Heading";
+import { TextField } from "../components/parts/TextFiled";
 import { NewTodoForm } from "../components/todo/NewTodoForm";
 import { TodoList } from "../components/todo/TodoList";
 import { useAuth } from "../hooks/use-auth";
 import { useTodoList } from "../hooks/use-todoList";
 
 export const Todo = () => {
-  const {logout, username} = useAuth();
-  const { todoList, addTodo, deleteTodo } = useTodoList();
+  const { logout, username } = useAuth();
+  const { todoList, addTodo, deleteTodo ,filterWord, setFilterWord} = useTodoList();
+  console.log("TODO");
   return (
     <main className="text-center mx-auto my-0">
       <Heading level="h1">Todo</Heading>
@@ -26,6 +28,9 @@ export const Todo = () => {
       </div>
       <div className="mt-2">
         <Heading level="h3">TODOLIST</Heading>
+        <div className="mt-8">
+          <TextField label="絞り込み" id="filter-word" value={filterWord} onChange={setFilterWord} type="text" />
+        </div>
         <TodoList deleteTodo={deleteTodo} todoList={todoList} />
       </div>
     </main>
