@@ -1,38 +1,31 @@
+import { Button, Tr } from "@chakra-ui/react";
+import { Td } from "@chakra-ui/react/table";
 import React, { memo } from "react";
-import { Todo } from "../../types/type";
-import { Button } from "../parts/Button";
 import { useAuth } from "../../hooks/use-auth";
 
 type Props = {
-  id: number,
+  id: number;
   task: string;
   person: string;
   deadline: string;
-  deleteTodo: (id:number) => void;
+  deleteTodo: (id: number) => void;
 };
 
-export const TodoItem= memo(({
-  id,
-  task,
-  person,
-  deadline,
-  deleteTodo
-}:Props) => {
+export const TodoItem = memo(
+  ({ id, task, person, deadline, deleteTodo }: Props) => {
+    const { username } = useAuth();
 
-  const{username} = useAuth();
-  const style = username === person ? "text-red-600 font-bold": "";
-
-  console.log("Todoitem")
-
-
-  return (
-    <li className="grid grid-cols-4">
-      <div>{task}</div>
-      <div className={style}>{person}</div>
-      <div>{deadline}</div>
-      <div>
-        <Button color="red" onClick={() => deleteTodo(id)}>削除</Button>
-      </div>
-    </li>
-  );
-});
+    return (
+      <Tr color={username === person ? "red":""}>
+        <Td>{task}</Td>
+        <Td>{person}</Td>
+        <Td isNumeric>{deadline}</Td>
+        <Td>
+          <Button color="red" onClick={() => deleteTodo(id)}>
+            削除
+          </Button>
+        </Td>
+      </Tr>
+    );
+  },
+);

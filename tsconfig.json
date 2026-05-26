@@ -3,7 +3,7 @@
     "jsx": "react",
     "sourceMap": true,
     "target": "es6",
-    "module": "esnext",
+    "module": "nodenext",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,

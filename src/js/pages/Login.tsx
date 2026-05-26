@@ -1,27 +1,25 @@
+import { Box, Button, Heading, HStack, Input } from "@chakra-ui/react";
 import React from "react";
-import { Button } from "../components/parts/Button";
-import { Heading } from "../components/parts/Heading";
-import { TextField } from "../components/parts/TextFiled";
 import { useAuth } from "../hooks/use-auth";
 
 export const Login = () => {
   const { login, username, setUserName } = useAuth();
-  console.log("login")
   return (
-    <main className="text-center mx-auto my-0">
-      <Heading level="h1">loggin</Heading>
-      <div className="flex gap-3">
-        <TextField
-          id="user-name"
-          label="username"
+    <Box as="main" w="720px" mx="auto" mt="20">
+      <Heading as="h1" size="xl">
+        loggin
+      </Heading>
+      <HStack spacing="4" mt="15">
+        <Input
+          placeholder="ユーザー名"
           type="text"
           value={username}
-          onChange={setUserName}
+          onChange={(e) => setUserName(e.target.value)}
         />
-        <Button onClick={login} color="red">
-          loggin
+        <Button colorScheme="blue" onClick={login}>
+          Button
         </Button>
-      </div>
-    </main>
+      </HStack>
+    </Box>
   );
 };

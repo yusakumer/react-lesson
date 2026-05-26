@@ -1,38 +1,59 @@
+import { Avatar, Box, Button, Heading, HStack, Input } from "@chakra-ui/react";
 import React from "react";
-import { Button } from "../components/parts/Button";
-import { Heading } from "../components/parts/Heading";
-import { TextField } from "../components/parts/TextFiled";
+import { AiOutlineUser } from "react-icons/ai";
 import { NewTodoForm } from "../components/todo/NewTodoForm";
-import { TodoList } from "../components/todo/TodoList";
+import { TodoTable } from "../components/todo/Todotable";
 import { useAuth } from "../hooks/use-auth";
 import { useTodoList } from "../hooks/use-todoList";
 
 export const Todo = () => {
   const { logout, username } = useAuth();
-  const { todoList, addTodo, deleteTodo ,filterWord, setFilterWord} = useTodoList();
+  const { todoList, addTodo, deleteTodo, filterWord, setFilterWord } =
+    useTodoList();
   console.log("TODO");
   return (
-    <main className="text-center mx-auto my-0">
-      <Heading level="h1">Todo</Heading>
-      <div>{username}</div>
-      <div>
-        <Button onClick={logout} color="red">
-          logout
-        </Button>
-      </div>
-      <div className="mt-3">
-        <Heading level="h2">新規Todo作成</Heading>
-        <div className="mt-3">
+    <Box as="main" w="720px" mx="auto" mt="20">
+      <HStack as="header" justifyContent="space-between" spacing="3">
+        <Heading as="h1" size="2xl">
+          Todo
+        </Heading>
+        <HStack justifyContent="end" spacing="4">
+          <HStack spacing="5">
+            <Avatar bg="red.500" icon={<AiOutlineUser fontSize="1.5rem" />} />
+            <Box>{username}</Box>
+          </HStack>
+
+          <Box>
+            <Button onClick={logout} colorScheme="red" size={"xs"}>
+              logout
+            </Button>
+          </Box>
+        </HStack>
+      </HStack>
+      <Box mt="20">
+        <Heading as="h2" size="xl">
+          新規Todo作成
+        </Heading>
+        <Box mt="10">
           <NewTodoForm addTodo={addTodo} />
-        </div>
-      </div>
-      <div className="mt-2">
-        <Heading level="h3">TODOLIST</Heading>
-        <div className="mt-8">
-          <TextField label="絞り込み" id="filter-word" value={filterWord} onChange={setFilterWord} type="text" />
-        </div>
-        <TodoList deleteTodo={deleteTodo} todoList={todoList} />
-      </div>
-    </main>
+        </Box>
+      </Box>
+      <Box as="section" mt="20">
+        <Heading as="h3" size="xl">
+          TODOLIST
+        </Heading>
+        <Box p="10">
+          <Input
+            placeholder="絞り込み"
+            type="text"
+            value={filterWord}
+            onChange={(e) => setFilterWord(e.target.value)}
+          />
+        </Box>
+        <Box mt="10">
+          <TodoTable todoList={todoList} deleteTodo={deleteTodo} />
+        </Box>
+      </Box>
+    </Box>
   );
 };
