@@ -9,7 +9,6 @@ export const NewTodoForm = ({ addTodo }: Props) => {
   const [newTask, setNewTask] = React.useState<string>("");
   const [newPerson, setPerson] = React.useState<string>("");
   const [newDeadline, setDeadline] = React.useState<string>("");
-  console.log("newTOodoform");
 
   const addNewTodo = () => {
     addTodo(newTask, newPerson, newDeadline);

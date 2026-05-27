@@ -1,9 +1,20 @@
 import { Box, Button, Heading, HStack, Input } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "../hooks/use-auth";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
-  const { login, username, setUserName } = useAuth();
+  const { isLoggedIn,login, username, setUserName } = useAuth();
+  const navigate = useNavigate();
+
+  // ログイン中だった場合、/todoに遷移させる
+  useEffect(() => {
+    if(isLoggedIn) {
+        navigate("/todo")
+    }
+  },[isLoggedIn])
+
+
   return (
     <Box as="main" w="720px" mx="auto" mt="20">
       <Heading as="h1" size="xl">

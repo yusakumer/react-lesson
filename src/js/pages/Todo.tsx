@@ -1,16 +1,27 @@
 import { Avatar, Box, Button, Heading, HStack, Input } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { NewTodoForm } from "../components/todo/NewTodoForm";
 import { TodoTable } from "../components/todo/Todotable";
 import { useAuth } from "../hooks/use-auth";
 import { useTodoList } from "../hooks/use-todoList";
+import { useNavigate } from "react-router-dom";
 
 export const Todo = () => {
-  const { logout, username } = useAuth();
-  const { todoList, addTodo, deleteTodo, filterWord, setFilterWord } =
-    useTodoList();
-  console.log("TODO");
+  const { isLoggedIn,logout, username } = useAuth();
+  const { todoList, addTodo, deleteTodo, filterWord, setFilterWord } =useTodoList();
+
+  const navigate = useNavigate();
+  
+  // ログアウト中にアクセスされたら、/logonに遷移させる
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+        navigate("/login");
+    };
+  },[isLoggedIn]);
+
+
   return (
     <Box as="main" w="720px" mx="auto" mt="20">
       <HStack as="header" justifyContent="space-between" spacing="3">
