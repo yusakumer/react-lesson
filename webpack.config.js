@@ -13,9 +13,11 @@ module.exports = {
 
     // 出力設定
     output: {
+        
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
         clean: true, // ビルドのたびに古いファイルを削除する
+        publicPath:"/",
     },
 
     // 対応する拡張子の設定
@@ -42,9 +44,17 @@ module.exports = {
 
     // 開発用サーバーの設定
     devServer: {
+        historyApiFallback:{
+            index:"index.html"
+        },
         static: './dist',
         hot: true, // 修正したら自動でブラウザに反映
         port: 3000,
+        devMiddleware:{
+            writeToDisk:(filePath) => {
+                return !/\.hot-update\.(js|json|js\.map)$/.test(filePath);
+            }
+        }
     },
 
     // デバッグしやすくするためのソースマップ
