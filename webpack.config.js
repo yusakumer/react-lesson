@@ -13,7 +13,6 @@ module.exports = {
 
     // 出力設定
     output: {
-        
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
         clean: true, // ビルドのたびに古いファイルを削除する

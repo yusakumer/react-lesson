@@ -15,20 +15,23 @@ export const useTodoList = () => {
     localStorage.setItem("todo-list", JSON.stringify(todoList));
   }, [todoList]);
 
-  const addTodo = useCallback((newTask: string, newPerson: string, newDeadline: string) => {
-    setTodoList((prev: Todo[]) => [
-      ...prev,
-      {
-        id: Date.now(),
-        task: newTask,
-        person: newPerson,
-        deadline: newDeadline,
-      },
-    ]);
-  },[]);
+  const addTodo = useCallback(
+    (newTask: string, newPerson: string, newDeadline: string) => {
+      setTodoList((prev: Todo[]) => [
+        ...prev,
+        {
+          id: Date.now().toString(),
+          task: newTask,
+          person: newPerson,
+          deadline: newDeadline,
+        },
+      ]);
+    },
+    [],
+  );
 
   const deleteTodo = useCallback(
-    (id: number) =>
+    (id: string) =>
       setTodoList((prev) => prev.filter((todo) => todo.id !== id)),
     [],
   );
