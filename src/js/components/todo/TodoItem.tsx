@@ -1,5 +1,4 @@
-import { Button, Tr } from "@chakra-ui/react";
-import { Td } from "@chakra-ui/react/table";
+import { Button, Td, Tr } from "@chakra-ui/react";
 import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../../stores/use-auth-store";

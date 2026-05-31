@@ -24091,7 +24091,7 @@ __webpack_require__.r(__webpack_exports__);
     if(true) {
       (function() {
         var localsJsonString = undefined;
-        // 1780205486318
+        // 1780248358424
         var cssReload = __webpack_require__(/*! ../../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {});
         // only invalidate when locals change
         if (
@@ -65523,19 +65523,18 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.TodoItem = void 0;
 const react_1 = __webpack_require__(/*! @chakra-ui/react */ "./node_modules/@chakra-ui/react/dist/cjs/index.cjs");
-const table_1 = __webpack_require__(/*! @chakra-ui/react/table */ "./node_modules/@chakra-ui/react/dist/cjs/table/index.cjs");
 const react_2 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 const use_auth_store_1 = __webpack_require__(/*! ../../stores/use-auth-store */ "./src/js/stores/use-auth-store.ts");
 exports.TodoItem = (0, react_2.memo)(({ id, task, person, deadline, deleteTodo }) => {
     const { username } = (0, use_auth_store_1.useAuthStore)();
     return (react_2.default.createElement(react_1.Tr, { color: username === person ? "red" : "" },
-        react_2.default.createElement(table_1.Td, null,
+        react_2.default.createElement(react_1.Td, null,
             react_2.default.createElement(react_router_dom_1.Link, { to: `/todo/${id}` }, id)),
-        react_2.default.createElement(table_1.Td, null, task),
-        react_2.default.createElement(table_1.Td, null, person),
-        react_2.default.createElement(table_1.Td, { isNumeric: true }, deadline),
-        react_2.default.createElement(table_1.Td, null,
+        react_2.default.createElement(react_1.Td, null, task),
+        react_2.default.createElement(react_1.Td, null, person),
+        react_2.default.createElement(react_1.Td, { isNumeric: true }, deadline),
+        react_2.default.createElement(react_1.Td, null,
             react_2.default.createElement(react_1.Button, { color: "red", onClick: () => deleteTodo(id) }, "\u524A\u9664"))));
 });
 
@@ -88934,41 +88933,6 @@ function useTheme() {
 }
 
 exports.useTheme = useTheme;
-
-
-/***/ },
-
-/***/ "./node_modules/@chakra-ui/react/dist/cjs/table/index.cjs"
-/*!****************************************************************!*\
-  !*** ./node_modules/@chakra-ui/react/dist/cjs/table/index.cjs ***!
-  \****************************************************************/
-(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var table = __webpack_require__(/*! ./table.cjs */ "./node_modules/@chakra-ui/react/dist/cjs/table/table.cjs");
-var tableCaption = __webpack_require__(/*! ./table-caption.cjs */ "./node_modules/@chakra-ui/react/dist/cjs/table/table-caption.cjs");
-var tableContainer = __webpack_require__(/*! ./table-container.cjs */ "./node_modules/@chakra-ui/react/dist/cjs/table/table-container.cjs");
-var tbody = __webpack_require__(/*! ./tbody.cjs */ "./node_modules/@chakra-ui/react/dist/cjs/table/tbody.cjs");
-var td = __webpack_require__(/*! ./td.cjs */ "./node_modules/@chakra-ui/react/dist/cjs/table/td.cjs");
-var tfooter = __webpack_require__(/*! ./tfooter.cjs */ "./node_modules/@chakra-ui/react/dist/cjs/table/tfooter.cjs");
-var th = __webpack_require__(/*! ./th.cjs */ "./node_modules/@chakra-ui/react/dist/cjs/table/th.cjs");
-var thead = __webpack_require__(/*! ./thead.cjs */ "./node_modules/@chakra-ui/react/dist/cjs/table/thead.cjs");
-var tr = __webpack_require__(/*! ./tr.cjs */ "./node_modules/@chakra-ui/react/dist/cjs/table/tr.cjs");
-
-
-
-exports.Table = table.Table;
-exports.useTableStyles = table.useTableStyles;
-exports.TableCaption = tableCaption.TableCaption;
-exports.TableContainer = tableContainer.TableContainer;
-exports.Tbody = tbody.Tbody;
-exports.Td = td.Td;
-exports.Tfoot = tfooter.Tfoot;
-exports.Th = th.Th;
-exports.Thead = thead.Thead;
-exports.Tr = tr.Tr;
 
 
 /***/ },
@@ -118568,7 +118532,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("4625a87e1c8c657bd9e6")
+/******/ 		__webpack_require__.h = () => ("21d15e5ec8674a044af9")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
