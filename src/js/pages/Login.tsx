@@ -1,20 +1,23 @@
 import { Box, Button, Heading, HStack, Input } from "@chakra-ui/react";
-import React, { useEffect } from "react";
-import { useAuth } from "../hooks/use-auth";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../stores/use-auth-store";
 
 export const Login = () => {
-  const { isLoggedIn,login, username, setUserName ,isLoginDone} = useAuth();
+  const { isLoggedIn, login, isLoginDone } =
+    useAuthStore();
   const navigate = useNavigate();
+
+  const [username,setUserName] = useState<string>("");
 
   // ログイン中だった場合、/todoに遷移させる
   useEffect(() => {
-    if(isLoginDone && isLoggedIn) {
-        navigate("/todo")
+    if (isLoginDone && isLoggedIn) {
+      navigate("/todo");
     }
-  },[isLoginDone,isLoggedIn])
+  }, [isLoginDone, isLoggedIn]);
 
-  if (!isLoginDone || !isLoggedIn) return null;
+  if (!isLoginDone || isLoggedIn) return null;
 
   return (
     <Box as="main" w="720px" mx="auto" mt="20">
@@ -28,7 +31,7 @@ export const Login = () => {
           value={username}
           onChange={(e) => setUserName(e.target.value)}
         />
-        <Button colorScheme="blue" onClick={login}>
+        <Button colorScheme="blue" onClick={() => login(username)}>
           Button
         </Button>
       </HStack>

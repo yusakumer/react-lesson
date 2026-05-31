@@ -1,8 +1,8 @@
 import { Button, Tr } from "@chakra-ui/react";
 import { Td } from "@chakra-ui/react/table";
 import React, { memo } from "react";
-import { useAuth } from "../../hooks/use-auth";
 import { Link } from "react-router-dom";
+import { useAuthStore } from "../../stores/use-auth-store";
 
 type Props = {
   id: string;
@@ -14,11 +14,13 @@ type Props = {
 
 export const TodoItem = memo(
   ({ id, task, person, deadline, deleteTodo }: Props) => {
-    const { username } = useAuth();
+    const { username } = useAuthStore();
 
     return (
-      <Tr color={username === person ? "red":""}>
-        <Td><Link to={`/todo/${id}`}>{id}</Link></Td>
+      <Tr color={username === person ? "red" : ""}>
+        <Td>
+          <Link to={`/todo/${id}`}>{id}</Link>
+        </Td>
         <Td>{task}</Td>
         <Td>{person}</Td>
         <Td isNumeric>{deadline}</Td>

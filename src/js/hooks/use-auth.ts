@@ -1,36 +1,18 @@
-import { useContext, useEffect } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+// import { useEffect } from "react";
+// import { useAuthStore } from "../stores/use-auth-store";
 
-const USER_NAME_KEY = "user-name"
 
-export const useAuth = () => {
-  const { isLoggedIn, setIsLoggedIn, username, setUserName,setIsLoginDone ,isLoginDone} =
-    useContext(AuthContext);
+// export const useAuth = () => {
+//   const {
+//     isLoggedIn,
+//     setIsLoggedIn,
+//     username,
+//     setUserName,
+//     setIsLoginDone,
+//     isLoginDone,
+//     login,
+//     logout
+//   } = useAuthStore();
 
-    const login = () => {
-        if (username) {
-            setIsLoggedIn(true);
-            localStorage.setItem(USER_NAME_KEY,username)
-        }
-    }
-
-    const logout = () => {
-        setIsLoggedIn(false);
-        setUserName("");
-        localStorage.removeItem(USER_NAME_KEY);
-    };
-
-    //マウント時にlocalstrageからusernameを取得する
-    //usernameがしゅときできた場合はログイン中として扱う
-    useEffect(()=> {
-        const userNameDate = localStorage.getItem(USER_NAME_KEY);
-        if 
-        (userNameDate) {
-            setUserName(userNameDate);
-            setIsLoggedIn(true);
-        }
-        setIsLoginDone(true);
-    },[])
-
-    return {isLoggedIn,login,logout,username,setUserName,isLoginDone}
-};
+//   return { isLoggedIn, login, logout, username, setUserName, isLoginDone };
+// };

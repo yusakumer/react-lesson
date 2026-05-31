@@ -2,15 +2,15 @@ import { Avatar, Button, HStack, Heading } from "@chakra-ui/icons";
 import { Box } from "@chakra-ui/react";
 import React, { PropsWithChildren, useEffect } from "react";
 import { AiOutlineUser } from "react-icons/ai";
-import { useAuth } from "../../../hooks/use-auth";
 import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../../../stores/use-auth-store";
 
 type Props = {
-    title:string;
-}
+  title: string;
+};
 
-export const Layout = ({title, children }: PropsWithChildren<Props>) => {
-  const { isLoggedIn, logout, username ,isLoginDone} = useAuth();
+export const Layout = ({ title, children }: PropsWithChildren<Props>) => {
+  const { isLoggedIn, logout, username, isLoginDone } = useAuthStore();
 
   const navigate = useNavigate();
 
@@ -18,9 +18,9 @@ export const Layout = ({title, children }: PropsWithChildren<Props>) => {
     if (isLoginDone && !isLoggedIn) {
       navigate("/login");
     }
-  }, [isLoginDone,isLoggedIn]);
+  }, [isLoginDone, isLoggedIn]);
 
-  if (isLoggedIn) return null;
+  if (!isLoginDone || !isLoggedIn) return null;
 
   return (
     <Box as="main" w="720px" mx="auto" mt="20">

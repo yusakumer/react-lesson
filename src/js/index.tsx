@@ -3,7 +3,6 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import "../css/main.css";
 import { App } from "./App";
-import { AuthProvider } from "./contexts/AuthContext";
 
 // const todoItem = "掃除洗濯";
 
@@ -24,8 +23,6 @@ const root = createRoot(document.getElementById("app")!);
 // root.render(element);
 root.render(
   <ChakraProvider>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+    <App />
   </ChakraProvider>,
 );
