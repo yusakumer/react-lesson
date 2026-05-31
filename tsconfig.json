@@ -12,7 +12,13 @@
     "outDir": "dist",
     "allowJs": true,
     "checkJs": false,
-    "moduleResolution": "nodenext"
+    "moduleResolution": "nodenext",
+    "types": [
+      "jest",
+      "@testing-library/jest-dom",
+      "@testing-library/react",
+      "node"
+    ] // <- 追加
   },
   "include": ["src"]
 }
