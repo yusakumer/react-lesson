@@ -12,13 +12,23 @@ jest.mock("../../../stores/use-auth-store", () => {
   };
 });
 
+const mockNavigate = jest.fn();
+
+//const mockUseNavigate = jest.fn().mockReturnValue(mockNavigate);
+
+jest.mock("react-router-dom",() => {
+    return {
+        ...jest.requireActual("react-router-dom"),
+        useNavigate:() => mockNavigate}
+})
+
 describe("Layoutコンポーネントのテスト", () => {
   test("コンポーネントが正しくレンダリングされている事", () => {
     mockUseAuthStore.mockReturnValue({
-      isLoggedIn:true,
-      logout:() => {},
+      isLoggedIn: true,
+      logout: () => {},
       username: "yamada",
-      isLoginDone:true
+      isLoginDone: true,
     });
     render(
       <BrowserRouter>
@@ -28,9 +38,29 @@ describe("Layoutコンポーネントのテスト", () => {
       </BrowserRouter>,
     );
 
-    expect(screen.getByRole("heading")).toHaveTextContent("Todoリスト");
+    expect(
+      screen.getByRole("heading", { name: "Todoリスト" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("yamada")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "logout" })).toBeInTheDocument();
   });
-  test("isLoginDoneがtrueで、!isLoggedInがfalseの場合、/loginに遷移する", () => {});
+  test("isLoginDoneがtrueで、!isLoggedInがfalseの場合、/loginに遷移する", () => {
+    mockUseAuthStore.mockReturnValue({
+      isLoggedIn: false,
+      logout: () => {},
+      username: "yamada",
+      isLoginDone: true,
+    });
+    render(
+      <BrowserRouter>
+        <Layout title="Todoリスト">
+          <div>コンポーネントテスト children</div>
+        </Layout>
+      </BrowserRouter>,
+    );
+
+    expect(mockNavigate).toHaveBeenCalledWith("/login");
+  });
   test("isLoginDoneがfalseで、!isLoggedInがfalseの場合,なにもレンダリングされない", () => {});
   test("ログアウトボタンをクリックされると、logout関数が呼ばれる事", () => {});
 });
