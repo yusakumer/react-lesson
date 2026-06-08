@@ -1,5 +1,6 @@
 import { act, renderHook } from "@testing-library/react";
 import { useTodoList } from "./use-todoList";
+import { GrEzmeral } from "react-icons/gr";
 
 describe("useTodoListフックのテスト", () => {
   beforeEach(() => {
@@ -53,6 +54,23 @@ describe("useTodoListフックのテスト", () => {
     expect(newTodo.deadline).toBe("2025-03-23")
     
   });
-  test("deleteTodoが実行されると、todoListとlocalstorageが更新される事", () => {});
-  test("setFilterWordが実行されると、絞り込まれたtodoListが返却される事", () => {});
+  test("deleteTodoが実行されると、todoListとlocalstorageが更新される事", () => {
+    const { result } = renderHook(() => useTodoList());
+    act(() => {
+        result.current.deleteTodo("123");
+    })
+
+    expect(result.current.todoList).toHaveLength(0)
+
+  });
+  test("setFilterWordが実行されると、絞り込まれたtodoListが返却される事", () => {
+    const { result } = renderHook(() => useTodoList());
+    act(() => {
+        result.current.setFilterWord("yamada");
+    })
+    expect(result.current.todoList).toHaveLength(1)
+
+    const todo = result.current.todoList[0]
+    expect(todo.id).toBe("123")
+  });
 });

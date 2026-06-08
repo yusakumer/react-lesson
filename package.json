@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "main": "dist/index.jsx",
   "scripts": {
-    "test":"jest",
+    "test": "jest",
     "tsc": "tsc",
     "build": "webpack",
     "start": "webpack serve",
-    "dev": ""
+    "dev": "",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "6.9.1",
@@ -25,7 +27,14 @@
     "style-loader": "^4.0.0",
     "tailwindcss": "^3.4.19",
     "ts-jest": "29.4.11",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "storybook": "^10.4.2",
+    "@storybook/react-webpack5": "^10.4.2",
+    "@storybook/addon-webpack5-compiler-swc": "^4.0.3",
+    "@storybook/addon-a11y": "^10.4.2",
+    "@storybook/addon-docs": "^10.4.2",
+    "@storybook/addon-onboarding": "^10.4.2",
+    "eslint-plugin-storybook": "^10.4.2"
   },
   "private": true,
   "keywords": [],
